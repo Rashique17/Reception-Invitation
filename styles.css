@@ -850,6 +850,14 @@ body {
     padding-right: max(env(safe-area-inset-right), 16px);
   }
 
+  .content {
+    padding: 30px 28px;
+  }
+
+  .content--details {
+    padding: 28px 26px;
+  }
+
   .floral-frame {
     inset: 10px;
   }
@@ -917,6 +925,14 @@ body {
 }
 
 @media (max-width: 420px) {
+  .content {
+    padding: 28px 24px;
+  }
+
+  .content--details {
+    padding: 26px 24px;
+  }
+
   .name {
     font-size: clamp(44px, 15vw, 64px);
   }
