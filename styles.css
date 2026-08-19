@@ -24,6 +24,8 @@ body {
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
   color: var(--maroon);
   background: linear-gradient(180deg, #fffdf6 0%, var(--ivory) 60%, #f6ead4 100%);
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom)
+    env(safe-area-inset-left);
 }
 
 .page {
@@ -164,6 +166,9 @@ body {
   font-weight: 400;
   font-size: clamp(80px, 10vw, 100px);
   line-height: 0.99;
+  max-width: 100%;
+  text-align: center;
+  overflow-wrap: anywhere;
   background: linear-gradient(
     110deg,
     #b27d10 0%,
@@ -863,6 +868,10 @@ body {
     font-size: clamp(54px, 16vw, 76px);
   }
 
+  .section-card--ceremony .name {
+    font-size: clamp(46px, 14vw, 66px);
+  }
+
   .countdown {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -897,6 +906,26 @@ body {
   }
   .cal {
     height: 34px;
+  }
+}
+
+@media (max-width: 420px) {
+  .name {
+    font-size: clamp(44px, 15vw, 64px);
+  }
+
+  .section-card--ceremony .name {
+    font-size: clamp(40px, 13vw, 58px);
+  }
+
+  .calendar {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .calendar__dow,
+  .calendar__grid {
+    min-width: 340px;
   }
 }
 
