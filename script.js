@@ -12,8 +12,39 @@ if (openBtn) {
   openBtn.addEventListener("blur", () => setPressed(false));
 
   openBtn.addEventListener("click", () => {
+    try {
+      window.sessionStorage.setItem("playMusic", "1");
+    } catch {}
     window.location.href = "./details.html";
   });
+}
+
+const bgMusic = document.getElementById("bgMusic");
+
+if (bgMusic) {
+  let shouldPlay = false;
+
+  try {
+    shouldPlay = window.sessionStorage.getItem("playMusic") === "1";
+    window.sessionStorage.removeItem("playMusic");
+  } catch {}
+
+  if (shouldPlay) {
+    bgMusic.loop = true;
+
+    const attachResume = () => {
+      const resume = () => {
+        const next = bgMusic.play();
+        if (next && typeof next.catch === "function") next.catch(() => {});
+      };
+
+      window.addEventListener("pointerdown", resume, { once: true });
+      window.addEventListener("keydown", resume, { once: true });
+    };
+
+    const started = bgMusic.play();
+    if (started && typeof started.catch === "function") started.catch(attachResume);
+  }
 }
 
 if (petalsHost) {
@@ -45,7 +76,7 @@ const revealEls = document.querySelectorAll(".reveal");
 if (revealEls.length) {
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  if (reduceMotion) {
+  if (reduceMotion || !("IntersectionObserver" in window)) {
     revealEls.forEach((el) => el.classList.add("is-visible"));
   } else {
     const observer = new IntersectionObserver(
@@ -99,17 +130,23 @@ const carouselTrack = document.getElementById("thanksCarouselTrack");
 
 if (carouselTrack) {
   const carousel = carouselTrack.closest(".carousel");
-  const prevBtn = document.querySelector(".carousel-btn--prev");
-  const nextBtn = document.querySelector(".carousel-btn--next");
-  const dots = Array.from(document.querySelectorAll(".carousel-dot"));
+  const prevBtn = carousel ? carousel.querySelector(".carousel-btn--prev") : null;
+  const nextBtn = carousel ? carousel.querySelector(".carousel-btn--next") : null;
+  const dots = carousel ? Array.from(carousel.querySelectorAll(".carousel-dot")) : [];
   const slides = Array.from(carouselTrack.querySelectorAll(".carousel-slide"));
   const slideCount = slides.length;
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (!slideCount) {
+    if (prevBtn) prevBtn.disabled = true;
+    if (nextBtn) nextBtn.disabled = true;
+  }
 
   let index = 0;
   let timerId = null;
 
   const setIndex = (next) => {
+    if (!slideCount) return;
     index = ((next % slideCount) + slideCount) % slideCount;
     slides.forEach((s, i) => s.classList.toggle("is-active", i === index));
 
@@ -122,7 +159,7 @@ if (carouselTrack) {
   };
 
   const startAuto = () => {
-    if (reduceMotion) return;
+    if (reduceMotion || !slideCount) return;
     stopAuto();
     timerId = window.setInterval(() => setIndex(index + 1), 3000);
   };
