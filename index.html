@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wedding Reception Invitation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;600&family=Inter:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="invitation" aria-label="Wedding reception invitation cover">
+        <div class="floral-frame" aria-hidden="true">
+          <div class="corner corner--tl"></div>
+          <div class="corner corner--tr"></div>
+          <div class="corner corner--bl"></div>
+          <div class="corner corner--br"></div>
+        </div>
+        <div class="content">
+          <div class="top-ornament" aria-hidden="true">
+            <svg class="ornament-svg" viewBox="0 0 900 220" xmlns="http://www.w3.org/2000/svg" role="img">
+              <defs>
+                <linearGradient id="gold" x1="0" x2="0" y1="0" y2="1">
+                  <stop offset="0" stop-color="#fff6d8" />
+                  <stop offset="0.55" stop-color="#d4af37" />
+                  <stop offset="1" stop-color="#f7e7b1" />
+                </linearGradient>
+              </defs>
+              <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M120 150c120-84 198-84 330 0s210 84 330 0" stroke="url(#gold)" stroke-width="5" />
+                <path d="M450 48c0 38-30 68-68 68 38 0 68 30 68 68 0-38 30-68 68-68-38 0-68-30-68-68Z" stroke="url(#gold)" stroke-width="5" />
+                <path d="M450 92c-46-38-94-50-144-36 38 14 62 42 74 84" stroke="url(#gold)" stroke-width="3.5" opacity="0.85" />
+                <path d="M450 92c46-38 94-50 144-36-38 14-62 42-74 84" stroke="url(#gold)" stroke-width="3.5" opacity="0.85" />
+                <path d="M212 160c22-10 40-28 54-54 10 28 10 52 0 72-22-6-40-12-54-18Z" stroke="url(#gold)" stroke-width="3" opacity="0.7" />
+                <path d="M688 160c-22-10-40-28-54-54-10 28-10 52 0 72 22-6 40-12 54-18Z" stroke="url(#gold)" stroke-width="3" opacity="0.7" />
+              </g>
+            </svg>
+          </div>
+
+          <header class="heading">
+            <div class="subtitle">Wedding Reception of</div>
+            <div class="names" aria-label="Rashique and Sajidah">
+              <h1 class="name">Rashique</h1>
+              <h1 class="name">&</h1>
+              <h1 class="name">Sajidah</h1>
+            </div>
+          </header>
+
+          <footer class="footer">
+            <div class="hint">Please open to continue</div>
+            <div class="hint">↓</div>
+            <button class="open-btn" type="button" id="openBtn">Open</button>
+          </footer>
+        </div>
+      </section>
+    </main>
+    <script src="./script.js"></script>
+  </body>
+</html>
